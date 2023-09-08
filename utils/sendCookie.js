@@ -7,14 +7,15 @@ module.exports.sendCookies = (res, user, message, statusCode = 200) => {
 
   const cookieOptions = {
     httpOnly: true,
+    secure: true,
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
+    domain: "https://noblebazaar.onrender.com",
   };
   res.status(statusCode).cookie("token", token, cookieOptions).json({
     success: true,
     message,
     user,
-    token,
   });
 };

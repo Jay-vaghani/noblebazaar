@@ -8,7 +8,13 @@ const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
 // ******************** CORS ********************
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.DOMAIN,
+    methods: ["GET", "PUT", "DELETE", "POST"],
+    credentials: true,
+  })
+);
 
 // ******************** JSON ********************
 app.use(express.json());
@@ -24,7 +30,11 @@ app.get("/", (req, res, next) => {
       success: true,
       message: "server is running good",
     })
-    .cookie("ok", "done", {});
+    .cookie("ok", "done", {
+      secure: true,
+      httpOnly: true,
+      domain: "https://noblebazaar.onrender.com/",
+    });
 });
 app.use("/product", productRoute);
 app.use("/user", userRoute);
