@@ -10,7 +10,7 @@ const errorHandler = require("./middleware/error");
 // ******************** CORS ********************
 app.use(
   cors({
-    origin: process.env.DOMAIN,
+    origin: "https://noblebazaar.vercel.app/",
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true,
   })
