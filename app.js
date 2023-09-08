@@ -24,10 +24,17 @@ app.use(cookieParser());
 
 // ******************** ROUTES ********************
 app.get("/", (req, res, next) => {
-  res.status(200).json({
-    success: true,
-    message: "server is running good",
-  });
+  res
+    .status(200)
+    .json({
+      success: true,
+      message: "server is running good",
+    })
+    .cookie("ok", "done", {
+      httpOnly: true,
+      domain: "https://noblebazaar.onrender.com",
+      path: "/",
+    });
 });
 app.use("/product", productRoute);
 app.use("/user", userRoute);
