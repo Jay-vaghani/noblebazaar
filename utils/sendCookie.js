@@ -8,6 +8,8 @@ module.exports.sendCookies = (res, user, message, statusCode = 200) => {
   const cookieOptions = {
     httpOnly: true,
     secure: true,
+    sameSite: "none",
+    secure: true,
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),

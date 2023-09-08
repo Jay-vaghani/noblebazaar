@@ -10,7 +10,7 @@ const errorHandler = require("./middleware/error");
 // ******************** CORS ********************
 app.use(
   cors({
-    origin: "https://noblebazaar.vercel.app/",
+    origin: [process.env.DOMAIN],
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials: true,
   })
@@ -32,7 +32,8 @@ app.get("/", (req, res, next) => {
     })
     .cookie("ok", "done", {
       secure: true,
-      httpOnly: true,
+      sameSite: "none",
+      secure: true,
       domain: "https://noblebazaar.onrender.com/",
     });
 });
