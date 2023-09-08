@@ -7,6 +7,12 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
+// ******************** JSON ********************
+app.use(express.json());
+
+// ******************** COOKIE PARSER ********************
+app.use(cookieParser());
+
 // ******************** CORS ********************
 app.use(
   cors({
@@ -15,12 +21,6 @@ app.use(
     credentials: true,
   })
 );
-
-// ******************** JSON ********************
-app.use(express.json());
-
-// ******************** COOKIE PARSER ********************
-app.use(cookieParser());
 
 // ******************** ROUTES ********************
 app.get("/", (req, res, next) => {
@@ -34,7 +34,6 @@ app.get("/", (req, res, next) => {
       secure: true,
       sameSite: "none",
       secure: true,
-      domain: "https://noblebazaar.onrender.com/",
     });
 });
 app.use("/product", productRoute);
