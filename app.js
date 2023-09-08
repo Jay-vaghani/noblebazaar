@@ -3,8 +3,18 @@ const app = express();
 const productRoute = require("./Routes/productRoutes");
 const userRoute = require("./Routes/userRoutes");
 const orderRoute = require("./Routes/orderRoutes");
-var cookieParser = require("cookie-parser");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
+
+// ******************** CORS ********************
+app.use(
+  cors({
+    origin: process.env.DOMAIN,
+    methods: ["GET", "PUT", "DELETE", "POST"],
+    credentials: true,
+  })
+);
 
 // ******************** JSON ********************
 app.use(express.json());
