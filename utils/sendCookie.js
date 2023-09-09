@@ -15,7 +15,7 @@ module.exports.sendCookies = (res, user, message, statusCode = 200) => {
     ),
     domain: "https://noblebazaar.onrender.com",
   };
-  res.status(statusCode).cookie("token", token, cookieOptions).json({
+  res.cookie("token", token, cookieOptions).status(statusCode).json({
     success: true,
     message,
     user,
