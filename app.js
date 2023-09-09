@@ -24,19 +24,10 @@ app.use(
 
 // ******************** ROUTES ********************
 app.get("/", (req, res, next) => {
-  res
-    .cookie("ok", "done 2", {
-      secure: true,
-      sameSite: "none",
-      expires: new Date(
-        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-      ),
-    })
-    .status(200)
-    .json({
-      success: true,
-      message: "server is running good",
-    });
+  res.status(200).json({
+    success: true,
+    message: "server is running good",
+  });
 });
 app.use("/product", productRoute);
 app.use("/user", userRoute);
