@@ -9,7 +9,7 @@ const errorHandler = require("./middleware/error");
 
 // ******************** JSON ********************
 app.use(express.json());
-
+app.set("trust proxy", 1);
 // ******************** COOKIE PARSER ********************
 app.use(cookieParser());
 
