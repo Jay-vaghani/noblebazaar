@@ -11,7 +11,6 @@ module.exports.sendCookies = async (res, user, message, statusCode = 200) => {
     expires: new Date(
       Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
     ),
-    domain: "https://noblebazaar.onrender.com",
   };
   res.cookie("token", token, cookieOptions).status(statusCode).json({
     success: true,

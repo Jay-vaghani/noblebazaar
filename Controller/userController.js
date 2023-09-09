@@ -19,7 +19,7 @@ exports.registerUser = AsyncErrorHandler(async (req, res, next) => {
     avatar,
   });
 
-  sendCookies(res, user, "User Registered", 201);
+  await sendCookies(res, user, "User Registered", 201);
 });
 
 // **************************** LOGIN USER ****************************
@@ -42,7 +42,7 @@ exports.userLogin = AsyncErrorHandler(async (req, res, next) => {
     return next(new ErrorHandler(401, "Incorrect password"));
   }
 
-  sendCookies(res, user, "User Logged In", 200);
+  await sendCookies(res, user, "User Logged In", 200);
 });
 
 // **************************** LOGIN OUT ****************************
@@ -130,7 +130,7 @@ exports.resetPassword = AsyncErrorHandler(async (req, res, next) => {
 
   await user.save();
 
-  sendCookies(res, user, "Password Reset Successfully", 200);
+  await sendCookies(res, user, "Password Reset Successfully", 200);
 });
 
 // **************************** GET USER DETAILS ****************************
@@ -184,7 +184,7 @@ exports.updateProfile = AsyncErrorHandler(async (req, res, next) => {
     { returnDocument: "after" }
   );
 
-  sendCookies(res, user, "Profile Updated", 200);
+  await sendCookies(res, user, "Profile Updated", 200);
 });
 
 // **************************** GET ALL USER DETAILS [ADMIN] ****************************
