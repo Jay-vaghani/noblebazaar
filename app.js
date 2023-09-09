@@ -25,15 +25,15 @@ app.use(
 // ******************** ROUTES ********************
 app.get("/", (req, res, next) => {
   res
-    .status(200)
-    .json({
-      success: true,
-      message: "server is running good",
-    })
     .cookie("ok", "done", {
       secure: true,
       sameSite: "none",
       secure: true,
+    })
+    .status(200)
+    .json({
+      success: true,
+      message: "server is running good",
     });
 });
 app.use("/product", productRoute);
