@@ -5,16 +5,19 @@ module.exports.sendCookies = async (res, user, message, statusCode = 200) => {
     expiresIn: process.env.JWT_EXPIRE,
   });
 
-  const cookieOptions = {
-    sameSite: "none",
-    secure: true,
-    expires: new Date(
-      Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    ),
-  };
-  res.cookie("token", token, cookieOptions).status(statusCode).json({
-    success: true,
-    message,
-    user,
-  });
+  // const cookieOptions =
+  res
+    .cookie("token", token, {
+      sameSite: "None",
+      secure: true,
+      expires: new Date(
+        Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+      ),
+    })
+    .status(statusCode)
+    .json({
+      success: true,
+      message,
+      user,
+    });
 };

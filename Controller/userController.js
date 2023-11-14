@@ -33,13 +33,13 @@ exports.userLogin = AsyncErrorHandler(async (req, res, next) => {
   let user = await User.findOne({ email }).select("+password");
 
   if (!user) {
-    return next(new ErrorHandler(401, "Please enter valid email address"));
+    return next(new ErrorHandler(401, "Incorrect Credentials"));
   }
 
   const comparePassword = await bcrypt.compare(password, user.password);
 
   if (!comparePassword) {
-    return next(new ErrorHandler(401, "Incorrect password"));
+    return next(new ErrorHandler(401, "Incorrect Credentials"));
   }
 
   await sendCookies(res, user, "User Logged In", 200);
