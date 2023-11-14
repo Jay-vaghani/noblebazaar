@@ -47,10 +47,7 @@ exports.userLogin = AsyncErrorHandler(async (req, res, next) => {
 
 // **************************** LOGIN OUT ****************************
 exports.userLogout = AsyncErrorHandler(async (req, res, next) => {
-  res.cookie("token", null, {
-    expires: new Date(Date.now()),
-    httpOnly: true,
-  });
+  res.clearCookie("token", { sameSite: "None", secure: true });
 
   res.json({
     success: true,
