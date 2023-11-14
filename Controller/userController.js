@@ -49,6 +49,7 @@ exports.userLogin = AsyncErrorHandler(async (req, res, next) => {
 exports.userLogout = AsyncErrorHandler(async (req, res, next) => {
   res.cookie("token", null, {
     expires: new Date(Date.now()),
+    httpOnly: true,
   });
 
   res.json({
